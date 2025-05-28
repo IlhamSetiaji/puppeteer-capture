@@ -1,5 +1,6 @@
 import puppeteer from "puppeteer";
 import path from "path";
+import { log } from "../utils/logger";
 
 const TARGET_URL = "https://www.google.com";
 
@@ -32,6 +33,7 @@ async function execute() {
     }, 10000);
   } catch (error) {
     console.error("Error taking screenshot:", error);
+    log.error(error as Error, error as Record<string, unknown>);
   }
 }
 

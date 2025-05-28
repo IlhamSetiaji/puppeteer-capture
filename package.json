@@ -21,12 +21,16 @@
   "dependencies": {
     "@types/express": "^5.0.2",
     "@types/multer": "^1.4.12",
+    "@types/winston": "^2.4.4",
     "ar-backend": "file:",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "limiter": "^3.0.0",
     "multer": "^2.0.0",
     "puppeteer": "^24.9.0",
+    "telegraf": "^4.16.3",
+    "winston": "^3.17.0",
     "zod": "^3.25.30"
   }
 }

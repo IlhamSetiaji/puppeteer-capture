@@ -6,6 +6,7 @@ import {
 import responseFormatter from "../../../../utils/response-formatter";
 import { takeScreenshotRequest } from "../requests/screenshots/take-screenshot-request";
 import fs from "fs";
+import { log } from "../../../../utils/logger";
 
 class ScreenshotHandler {
   private readonly useCase: IScreenshotUseCase;
@@ -37,6 +38,7 @@ class ScreenshotHandler {
       );
     } catch (error) {
       console.error("Error taking screenshot:", error);
+      log.error(error as Error, error as Record<string, unknown>);
       return responseFormatter.error(
         res,
         error,
@@ -66,6 +68,7 @@ class ScreenshotHandler {
       return res.sendFile(screenshotPath);
     } catch (error) {
       console.error("Error retrieving screenshot path:", error);
+      log.error(error as Error, error as Record<string, unknown>);
       return responseFormatter.error(
         res,
         error,
