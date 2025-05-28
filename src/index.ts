@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import express, { Express, Request, Response } from "express";
+import express, { Express, NextFunction, Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import path from "path";
@@ -41,7 +41,7 @@ app.use("/public", express.static(path.join(__dirname, "../public")));
 app.get("/", (req: Request, res: Response) => {
   res.send("Welcome to the API!");
 });
-app.get("/test-error", () => {
+app.get("/test-error", (req: Request, res: Response, next: NextFunction) => {
   // throw new AppError("This is a test error", 400);
   try {
     log.info("User logged in", { userId: 123, ip: "192.168.1.1" });
@@ -51,6 +51,10 @@ app.get("/test-error", () => {
       operation: "user_login",
       userId: 123,
       authToken: "secret-token-here",
+    });
+    res.status(500).send({
+      message: "An error occurred, check logs for details.",
+      error: error instanceof Error ? error.message : "Unknown error",
     });
   }
 });
