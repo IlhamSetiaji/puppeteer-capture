@@ -44,15 +44,15 @@ app.get("/", (req: Request, res: Response) => {
 app.get("/test-error", () => {
   // throw new AppError("This is a test error", 400);
   try {
-  log.info('User logged in', { userId: 123, ip: '192.168.1.1' });
-  throw new Error("Simulated error for testing");
-} catch (error) {
-  log.error(error as Error, { 
-    operation: 'user_login',
-    userId: 123,
-    authToken: 'secret-token-here' 
-  });
-}
+    log.info("User logged in", { userId: 123, ip: "192.168.1.1" });
+    throw new Error("Simulated error for testing");
+  } catch (error) {
+    log.error(error as Error, {
+      operation: "user_login",
+      userId: 123,
+      authToken: "secret-token-here",
+    });
+  }
 });
 
 app.use("/api", apiRoute);
